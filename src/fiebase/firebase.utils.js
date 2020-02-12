@@ -20,15 +20,15 @@ const config = {
     const userSnapShot = await userRef.get();
 
     console.log(userSnapShot)
+    console.log(userAuth)
 
-    if(!userSnapShot.exist) {
+    if(!userSnapShot.exists) {
       const { displayName, email } = userAuth;
       const createdAt = new Date();
 
       try{
         await userRef.set({
           displayName,
-
           email,
           createdAt,
           ...additionalData
