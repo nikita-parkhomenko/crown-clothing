@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, BrowserRouter, Switch} from 'react-router-dom';
+import {Route, BrowserRouter, Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import HomePage from './pages/homepage/homepage';
@@ -28,7 +28,7 @@ componentDidMount() {
           id: snapshot.id,
           ...snapshot.data()
         }
-        
+
         setCurrentUser(user)
       })
     } else {
@@ -49,7 +49,10 @@ componentWillUnmount() {
           <Switch>
             <Route path='/' exact component={HomePage} />
             <Route path='/shop' component={ShopPage} />
-            <Route path='/sign-in' component={SignInSignUp} />
+            <Route exact path='/sign-in' render={ () => this.props.currentUser ? 
+              (<Redirect to='/' />) 
+                : 
+              (<SignInSignUp />)} />
           </Switch>
         </div>
       </BrowserRouter>
@@ -57,8 +60,12 @@ componentWillUnmount() {
   }
 }
 
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+})
+
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 })
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
