@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../../fiebase/firebase.utils';
 import { connect } from 'react-redux';
 
-import './header.scss';
+import { auth } from '../../fiebase/firebase.utils';
 import { ReactComponent as Logo } from '../../assets/crown.svg'
+import CartIcon from '../cart-icon/cart-icon';
+
+import './header.scss';
 
 const Header = ({ currentUser }) => (
     <div className="header">
@@ -25,6 +27,7 @@ const Header = ({ currentUser }) => (
                     :
                     <Link className="option" to="/sign-in">SIGN IN</Link>
             }
+            <CartIcon />
         </div>
     </div>
 );
