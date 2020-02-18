@@ -6,6 +6,7 @@ import { auth } from '../../fiebase/firebase.utils';
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 import CartIcon from '../cart-icon/cart-icon';
 import CartDropdown from '../cart-dropdown/cart-dropdown';
+import { selectCurrentUser } from '../../redux/user/user.selectors'
 
 import './header.scss';
 
@@ -38,7 +39,7 @@ const Header = ({ currentUser, hidden }) => (
 
 const mapStateToProps = state => {
     return {
-        currentUser: state.user.currentUser,
+        currentUser: selectCurrentUser(state),
         hidden : state.cart.hidden
     }
 }
