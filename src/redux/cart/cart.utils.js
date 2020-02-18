@@ -15,3 +15,7 @@ export const addItemToCart = (cartItems, itemToAdd) => {
 
     return [...cartItems, { ...itemToAdd, quantity: 1 } ]
 }
+
+export const removeItem = (cartItems, itemToRemove) => {
+    return cartItems.filter( item => item.id !== itemToRemove.id)
+}
