@@ -10,8 +10,8 @@ import App from './App';
 
 ReactDOM.render(
     <Provider store={ store } >
-        <PersistGate persistor={persistor}>
-            <App />
+        <PersistGate persistor={persistor} >
+           <App />
         </PersistGate>
     </Provider>, 
     document.getElementById('root')
